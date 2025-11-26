@@ -471,123 +471,157 @@
         </div>
     </section>
 
-    <!-- Featured Products Section -->
+    <!-- Featured Products Section (Shop Layout) -->
     <section id="featured" class="products-section" style="background: #f8f9fa;">
         <div class="container">
-            <div class="section-title">
-                <h2>Best Selling Products</h2>
-                <p>Top rated inputs trusted by farmers</p>
-            </div>
-
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/feed-1.jpg" alt="Dairy Meal"
-                            onerror="this.src='assets/images/1.jpeg'">
-                        <div class="stock-status in-stock">In Stock</div>
+            <!-- Sidebar -->
+            <aside class="shop-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Search Products</h3>
+                    <div class="sidebar-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search products...">
                     </div>
-                    <div class="product-details">
-                        <div class="product-category">Animal Feeds</div>
-                        <h3 class="product-name">Premium Dairy Meal</h3>
-                        <div class="product-meta">
-                            <div class="product-brand"><i class="fas fa-tag"></i> Unga Farm Care</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Categories</h3>
+                    <div class="sidebar-categories">
+                        <button class="category-btn active"><i class="fas fa-th"></i> All Products</button>
+                        <button class="category-btn"><i class="fas fa-syringe"></i> Veterinary</button>
+                        <button class="category-btn"><i class="fas fa-paw"></i> Animal Feeds</button>
+                        <button class="category-btn"><i class="fas fa-shield-alt"></i> Crop Protection</button>
+                        <button class="category-btn"><i class="fas fa-seedling"></i> Seeds</button>
+                        <button class="category-btn"><i class="fas fa-leaf"></i> Fertilizers</button>
+                    </div>
+                </div>
+
+                <div class="help-widget">
+                    <h3 class="sidebar-title">Need Help?</h3>
+                    <div class="help-icon"><i class="fas fa-headset"></i></div>
+                    <p class="help-text">Our experts are ready to assist you</p>
+                    <a href="https://wa.me/254768164336" class="btn-chat"><i class="fab fa-whatsapp"></i> Chat with
+                        us</a>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="shop-main">
+                <div class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                    <h2>Shop All Products</h2>
+                    <p>Browse our wide range of agricultural inputs</p>
+                </div>
+
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="assets/images/products/feed-1.jpg" alt="Dairy Meal"
+                                onerror="this.src='https://placehold.co/600x400/e8f5e9/1b5e20?text=Product'">
+                            <div class="stock-status in-stock">In Stock</div>
                         </div>
-                        <div class="product-footer">
-                            <div class="product-price">
-                                <span class="currency">KSh</span>
-                                <span class="amount">2,800</span>
+                        <div class="product-details">
+                            <div class="product-category">Animal Feeds</div>
+                            <h3 class="product-name">Premium Dairy Meal</h3>
+                            <div class="product-meta">
+                                <div class="product-brand"><i class="fas fa-tag"></i> Unga Farm Care</div>
                             </div>
-                            <button class="btn-add-cart"
-                                onclick="cart.addItem({id: 'p1', name: 'Premium Dairy Meal', price: 2800, image: 'assets/images/products/feed-1.jpg'})">
-                                <i class="fas fa-cart-plus"></i> Add
-                            </button>
+                            <div class="product-footer">
+                                <div class="product-price">
+                                    <span class="currency">KSh</span>
+                                    <span class="amount">2,800</span>
+                                </div>
+                                <button class="btn-add-cart"
+                                    onclick="cart.addItem({id: 'p1', name: 'Premium Dairy Meal', price: 2800, image: 'assets/images/products/feed-1.jpg'})">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="assets/images/products/fert-1.jpg" alt="DAP Fertilizer"
+                                onerror="this.src='https://placehold.co/600x400/e8f5e9/1b5e20?text=Product'">
+                            <div class="stock-status in-stock">In Stock</div>
+                        </div>
+                        <div class="product-details">
+                            <div class="product-category">Fertilizers</div>
+                            <h3 class="product-name">DAP Fertilizer (50kg)</h3>
+                            <div class="product-meta">
+                                <div class="product-brand"><i class="fas fa-tag"></i> Yara</div>
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-price">
+                                    <span class="currency">KSh</span>
+                                    <span class="amount">6,500</span>
+                                </div>
+                                <button class="btn-add-cart"
+                                    onclick="cart.addItem({id: 'p2', name: 'DAP Fertilizer (50kg)', price: 6500, image: 'assets/images/products/fert-1.jpg'})">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="assets/images/products/seed-1.jpg" alt="Maize Seed 614"
+                                onerror="this.src='https://placehold.co/600x400/e8f5e9/1b5e20?text=Product'">
+                            <div class="stock-status in-stock">In Stock</div>
+                        </div>
+                        <div class="product-details">
+                            <div class="product-category">Seeds</div>
+                            <h3 class="product-name">Maize Seed H614 (2kg)</h3>
+                            <div class="product-meta">
+                                <div class="product-brand"><i class="fas fa-tag"></i> Kenya Seed</div>
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-price">
+                                    <span class="currency">KSh</span>
+                                    <span class="amount">580</span>
+                                </div>
+                                <button class="btn-add-cart"
+                                    onclick="cart.addItem({id: 'p3', name: 'Maize Seed H614 (2kg)', price: 580, image: 'assets/images/products/seed-1.jpg'})">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="assets/images/products/chem-1.jpg" alt="Pest Control"
+                                onerror="this.src='https://placehold.co/600x400/e8f5e9/1b5e20?text=Product'">
+                            <div class="stock-status in-stock">In Stock</div>
+                        </div>
+                        <div class="product-details">
+                            <div class="product-category">Crop Protection</div>
+                            <h3 class="product-name">Thunder Insecticide</h3>
+                            <div class="product-meta">
+                                <div class="product-brand"><i class="fas fa-tag"></i> Bayer</div>
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-price">
+                                    <span class="currency">KSh</span>
+                                    <span class="amount">1,200</span>
+                                </div>
+                                <button class="btn-add-cart"
+                                    onclick="cart.addItem({id: 'p4', name: 'Thunder Insecticide', price: 1200, image: 'assets/images/products/chem-1.jpg'})">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/fert-1.jpg" alt="DAP Fertilizer"
-                            onerror="this.src='assets/images/1.jpeg'">
-                        <div class="stock-status in-stock">In Stock</div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-category">Fertilizers</div>
-                        <h3 class="product-name">DAP Fertilizer (50kg)</h3>
-                        <div class="product-meta">
-                            <div class="product-brand"><i class="fas fa-tag"></i> Yara</div>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">
-                                <span class="currency">KSh</span>
-                                <span class="amount">6,500</span>
-                            </div>
-                            <button class="btn-add-cart"
-                                onclick="cart.addItem({id: 'p2', name: 'DAP Fertilizer (50kg)', price: 6500, image: 'assets/images/products/fert-1.jpg'})">
-                                <i class="fas fa-cart-plus"></i> Add
-                            </button>
-                        </div>
-                    </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="products.html" class="btn btn-primary btn-large">View All Products</a>
                 </div>
-
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/seed-1.jpg" alt="Maize Seed 614"
-                            onerror="this.src='assets/images/1.jpeg'">
-                        <div class="stock-status in-stock">In Stock</div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-category">Seeds</div>
-                        <h3 class="product-name">Maize Seed H614 (2kg)</h3>
-                        <div class="product-meta">
-                            <div class="product-brand"><i class="fas fa-tag"></i> Kenya Seed</div>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">
-                                <span class="currency">KSh</span>
-                                <span class="amount">580</span>
-                            </div>
-                            <button class="btn-add-cart"
-                                onclick="cart.addItem({id: 'p3', name: 'Maize Seed H614 (2kg)', price: 580, image: 'assets/images/products/seed-1.jpg'})">
-                                <i class="fas fa-cart-plus"></i> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/chem-1.jpg" alt="Pest Control"
-                            onerror="this.src='assets/images/1.jpeg'">
-                        <div class="stock-status in-stock">In Stock</div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-category">Crop Protection</div>
-                        <h3 class="product-name">Thunder Insecticide</h3>
-                        <div class="product-meta">
-                            <div class="product-brand"><i class="fas fa-tag"></i> Bayer</div>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">
-                                <span class="currency">KSh</span>
-                                <span class="amount">1,200</span>
-                            </div>
-                            <button class="btn-add-cart"
-                                onclick="cart.addItem({id: 'p4', name: 'Thunder Insecticide', price: 1200, image: 'assets/images/products/chem-1.jpg'})">
-                                <i class="fas fa-cart-plus"></i> Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="products.html" class="btn btn-primary btn-large">View All Products</a>
-            </div>
+            </div> <!-- End shop-main -->
         </div>
     </section>
 

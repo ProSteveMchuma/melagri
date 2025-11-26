@@ -1258,3 +1258,151 @@
         grid-template-columns: 1fr !important;
     }
 }
+/* ========================================
+   SHOP SIDEBAR LAYOUT
+   ======================================== */
+
+/* Shop Container Layout */
+#featured .container {
+    display: grid !important;
+    grid-template-columns: 280px 1fr !important;
+    gap: 2rem !important;
+    align-items: start !important;
+}
+
+/* Sidebar Styling */
+.shop-sidebar {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-section {
+    margin-bottom: 2rem;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-900);
+    margin-bottom: 1rem;
+}
+
+/* Sidebar Search */
+.sidebar-search {
+    position: relative;
+}
+
+.sidebar-search input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.sidebar-search input:focus {
+    border-color: var(--primary-500);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.sidebar-search i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-500);
+}
+
+/* Sidebar Categories */
+.sidebar-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--gray-50);
+    border: none;
+    border-radius: 8px;
+    color: var(--gray-700);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--primary-700);
+}
+
+.category-btn.active {
+    background: var(--primary-600);
+    color: white;
+}
+
+.category-btn i {
+    width: 20px;
+    text-align: center;
+}
+
+/* Need Help Widget */
+.help-widget {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.help-icon {
+    font-size: 2.5rem;
+    color: var(--primary-600);
+    margin-bottom: 1rem;
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    margin-bottom: 1.5rem;
+}
+
+.btn-chat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #25D366;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-chat:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    #featured .container {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .shop-sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+}
