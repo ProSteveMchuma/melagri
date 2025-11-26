@@ -79,9 +79,6 @@
     <link rel="preload" href="assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/styles.css"></noscript>
     
-    <!-- E-commerce Stylesheet -->
-    <link rel="stylesheet" href="assets/css/ecommerce.css">
-    
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
     {
@@ -222,7 +219,7 @@
         <div class="top-nav-center">
             <a href="#home" class="top-nav-link">Home</a>
             <a href="#about" class="top-nav-link">About</a>
-            <a href="products.html" class="top-nav-link">Shop</a>
+            <a href="#products" class="top-nav-link">Products</a>
             <a href="#services" class="top-nav-link">Services</a>
             <a href="#contact" class="top-nav-link">Contact</a>
         </div>
@@ -230,10 +227,6 @@
             <a href="tel:+254768164336" class="phone-btn">
                 <i class="fas fa-phone"></i>
                 <span>0768 164336</span>
-            </a>
-            <a href="#" id="cart-toggle" class="cart-btn">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge">0</span>
             </a>
             <div class="burger">
                 <span></span>
@@ -307,8 +300,8 @@
                 <h1>Achieve more when farming with us!</h1>
                 <p>At <span class="brand-name">Makamithi</span>, we empower farmers across Kenya by enhancing their skills, expanding market access, and strengthening their financial resources. Together, we cultivate a sustainable future for agriculture in our nation.</p>
                 <div class="cta-buttons">
-                    <a href="products.html" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Shop Now</a>
-                    <a href="https://wa.me/254748970757?text=Hello%20Makamithi,%20I%20have%20a%20question" target="_blank" class="btn btn-secondary"><i class="fab fa-whatsapp"></i> Ask us a question</a>
+                    <a href="https://wa.me/254748970757?text=Hello%20Makamithi,%20I%20have%20a%20question" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Ask us a question</a>
+                    <a href="#products" class="btn btn-secondary"><i class="fas fa-arrow-right"></i> Discover our products</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -791,31 +784,5 @@
     
     <!-- Main JavaScript - Deferred -->
     <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/cart.js"></script>
-    
-    <!-- Mini Cart Dropdown -->
-    <div id="mini-cart" class="mini-cart">
-        <div class="mini-cart-header">
-            <h3>Shopping Cart</h3>
-            <span class="cart-item-count"><span class="cart-badge">0</span> items</span>
-        </div>
-        <div id="mini-cart-empty" class="mini-cart-empty">
-            <i class="fas fa-shopping-cart"></i>
-            <p>Your cart is empty</p>
-        </div>
-        <div id="mini-cart-items" class="mini-cart-items" style="display: none;">
-            <!-- Cart items will be inserted here -->
-        </div>
-        <div class="mini-cart-footer">
-            <div class="mini-cart-total">
-                <span>Total:</span>
-                <span id="mini-cart-total">KSh 0</span>
-            </div>
-            <div class="mini-cart-actions">
-                <a href="cart.html" class="btn btn-secondary">View Cart</a>
-                <a href="checkout.html" class="btn btn-primary">Checkout</a>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
