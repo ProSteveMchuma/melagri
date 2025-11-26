@@ -6,6 +6,7 @@
 class Checkout {
     constructor() {
         this.deliveryFee = 500;
+        this.currentStep = 1;
         this.init();
     }
 
@@ -19,6 +20,7 @@ class Checkout {
 
         this.renderOrderSummary();
         this.setupFormHandlers();
+        this.setupStepNavigation();
     }
 
     renderOrderSummary() {
@@ -30,7 +32,7 @@ class Checkout {
             orderItems.innerHTML = cart.cart.map(item => `
                 <div class="order-item">
                     <div class="order-item-image">
-                        <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='assets/logos/Makamithi Logo.png'"
+                        <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='assets/logos/Makamithi Logo.png'">
                         <span class="item-qty">${item.quantity}</span>
                     </div>
                     <div class="order-item-details">
@@ -52,6 +54,115 @@ class Checkout {
         if (summarySubtotal) summarySubtotal.textContent = `KSh ${subtotal.toLocaleString()}`;
         if (summaryDelivery) summaryDelivery.textContent = `KSh ${this.deliveryFee.toLocaleString()}`;
         if (summaryTotal) summaryTotal.textContent = `KSh ${total.toLocaleString()}`;
+    }
+
+    setupStepNavigation() {
+        const nextBtn = document.getElementById('next-step-btn');
+        const prevBtn = document.getElementById('prev-step-btn');
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => this.nextStep());
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.prevStep());
+        }
+    }
+
+    nextStep() {
+        if (this.validateStep(1)) {
+            this.currentStep = 2;
+            this.updateStepVisibility();
+            this.updateProgress();
+            window.scrollTo(0, 0);
+        }
+    }
+
+    prevStep() {
+        this.currentStep = 1;
+        this.updateStepVisibility();
+        this.updateProgress();
+        window.scrollTo(0, 0);
+    }
+
+    updateStepVisibility() {
+        const step1 = document.getElementById('step-1');
+        const step2 = document.getElementById('step-2');
+
+        if (this.currentStep === 1) {
+            step1.classList.remove('hidden');
+            step2.classList.add('hidden');
+        } else {
+            step1.classList.add('hidden');
+            step2.classList.remove('hidden');
+        }
+    }
+
+    updateProgress() {
+        const steps = document.querySelectorAll('.progress-step');
+
+        steps.forEach((step, index) => {
+            // Index 0 is Cart (always completed)
+            // Index 1 is Details (Step 1)
+            // Index 2 is Payment (Step 2)
+            // Index 3 is Complete
+
+            if (index === 0) {
+                step.classList.add('completed');
+                step.classList.remove('active');
+            } else if (index === 1) {
+                if (this.currentStep === 1) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                }
+            } else if (index === 2) {
+                if (this.currentStep === 2) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
+            } else {
+                step.classList.remove('active', 'completed');
+            }
+        });
+    }
+
+    validateStep(step) {
+        if (step === 1) {
+            const form = document.getElementById('checkout-form');
+            const requiredFields = [
+                'fullName', 'phone', 'email', 'county', 'city', 'address'
+            ];
+
+            let isValid = true;
+            let firstError = null;
+
+            requiredFields.forEach(fieldName => {
+                const field = form.querySelector(`[name="${fieldName}"]`);
+                if (field && !field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#e53935';
+                    if (!firstError) firstError = field;
+
+                    // Reset border on input
+                    field.addEventListener('input', () => {
+                        field.style.borderColor = '#e0e0e0';
+                    }, { once: true });
+                }
+            });
+
+            if (!isValid) {
+                alert('Please fill in all required fields.');
+                if (firstError) firstError.focus();
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 
     setupFormHandlers() {
@@ -80,7 +191,7 @@ class Checkout {
         const formData = new FormData(form);
         const subtotal = cart.getTotal();
         const total = subtotal + this.deliveryFee;
-        
+
         const orderData = {
             customer: {
                 name: formData.get('fullName'),
@@ -122,7 +233,7 @@ class Checkout {
         try {
             // Create order via API
             const response = await api.createOrder(orderData);
-            
+
             if (!response.success) {
                 throw new Error(response.message || 'Failed to create order');
             }
@@ -132,6 +243,9 @@ class Checkout {
             // Process payment based on method
             if (orderData.payment.method === 'mpesa') {
                 await this.processMpesaPayment(order);
+            } else if (orderData.payment.method === 'card') {
+                // Simulate Card Payment
+                await this.processCardPayment(order);
             } else {
                 // Cash on Delivery - confirm and redirect
                 await api.confirmCODOrder(order.orderNumber);
@@ -140,12 +254,22 @@ class Checkout {
         } catch (error) {
             console.error('Order processing error:', error);
             alert(error.message || 'There was an error processing your order. Please try again.');
-            
+
             if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-lock"></i> Place Order';
             }
         }
+    }
+
+    async processCardPayment(order) {
+        // Simulate Card Payment Processing
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // In a real app, this would integrate with a payment gateway (Stripe, PayPal, etc.)
+        alert('Card payment successful! (Simulation)');
+
+        this.redirectToSuccess(order);
     }
 
     async processMpesaPayment(order) {
@@ -211,10 +335,10 @@ class Checkout {
     redirectToSuccess(orderData) {
         // Store order for success page
         sessionStorage.setItem('last_order', JSON.stringify(orderData));
-        
+
         // Clear cart
         cart.clearCart();
-        
+
         // Redirect to success page
         window.location.href = 'order-success.html';
     }
