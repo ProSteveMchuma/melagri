@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Makamithi Kenya</title>
+
+    <!-- Meta Description -->
+    <meta name="description"
+        content="Buy agricultural products online at Makamithi Kenya. Quality feeds, fertilizers, and seeds.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/logos/Makamithi Logo.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Arizonia&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css?v=2">
+    <link rel="stylesheet" href="assets/css/ecommerce.css?v=2">
+    <link rel="stylesheet" href="assets/css/premium-landing.css">
+
+    <style>
+        /* Product Details Specific Styles */
+        .product-details-page {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+            background: #f8f9fa;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--gray-700);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-600);
+        }
+
+        .product-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-gallery {
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            margin-bottom: 1rem;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-500);
+        }
+
+        .product-info-col h1 {
+            font-size: 2rem;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-meta-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .stock-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .stock-badge.in-stock {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .stock-badge.out-of-stock {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .product-price-large {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-900);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .product-price-large span {
+            font-size: 1rem;
+            color: var(--gray-700);
+            font-weight: 400;
+        }
+
+        .product-description-short {
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--gray-300);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .qty-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .btn-add-cart-large {
+            flex: 1;
+            background: var(--gradient-secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-add-cart-large:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-wishlist-large {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--gray-300);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--gray-700);
+            transition: all 0.2s;
+        }
+
+        .btn-wishlist-large:hover {
+            background: #fce4ec;
+            color: #e91e63;
+            border-color: #e91e63;
+        }
+
+        .product-tabs {
+            margin-top: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-headers {
+            display: flex;
+            gap: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-900);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-600);
+        }
+
+        .tab-content {
+            display: none;
+            line-height: 1.8;
+            color: var(--gray-700);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .product-main-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Navigation Bar (Copied from index.html) -->
+    <div class="top-nav">
+        <a href="index.html" class="logo">
+            <img src="assets/logos/Makamithi Logo.png" alt="Makamithi Logo" style="height: 60px; width: auto;">
+        </a>
+
+        <div class="header-search">
+            <form action="products.html" method="GET" class="header-search-form">
+                <input type="text" name="search" placeholder="Search products..." aria-label="Search">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <div class="top-nav-right">
+            <a href="tel:+254768164336" class="phone-btn hide-mobile">
+                <i class="fas fa-phone"></i>
+                <span>0768 164336</span>
+            </a>
+
+            <a href="#" class="wishlist-btn" id="wishlist-toggle">
+                <i class="far fa-heart"></i>
+                <span class="wishlist-count" style="display: none;">0</span>
+            </a>
+
+            <a href="#" id="cart-toggle" class="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </a>
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+    <ul class="mobile-menu">
+        <div class="mobile-menu-header">
+            <img src="assets/logos/Makamithi Logo.png" alt="Makamithi Logo" style="height: 50px; width: auto;">
+            <button class="mobile-close"><i class="fas fa-times"></i></button>
+        </div>
+        <li><a href="index.html"><i class="fas fa-home"></i><span class="nav-text">Home</span></a></li>
+        <li><a href="index.html#categories"><i class="fas fa-th-large"></i><span class="nav-text">Categories</span></a>
+        </li>
+        <li><a href="index.html#featured"><i class="fas fa-star"></i><span class="nav-text">Best Sellers</span></a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a></li>
+    </ul>
+
+    <!-- Product Details Section -->
+    <div class="product-details-page">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="index.html#categories">Products</a> / <span
+                    id="breadcrumb-current">Loading...</span>
+            </div>
+
+            <div class="product-main-grid">
+                <!-- Gallery -->
+                <div class="product-gallery">
+                    <img id="main-image" src="" alt="Product Image" class="main-image">
+                    <!-- Thumbnails can be added dynamically if we have multiple images -->
+                </div>
+
+                <!-- Info -->
+                <div class="product-info-col">
+                    <div class="product-meta-header">
+                        <span id="product-brand"><i class="fas fa-certificate"></i> Brand</span>
+                        <span id="stock-status" class="stock-badge">Checking Stock...</span>
+                    </div>
+
+                    <h1 id="product-name">Loading Product...</h1>
+
+                    <div class="product-price-large">
+                        <span class="currency">KSh</span>
+                        <span id="product-price">0</span>
+                        <span class="unit" id="product-unit">/ unit</span>
+                    </div>
+
+                    <p class="product-description-short" id="product-description">
+                        Please wait while we load the product details...
+                    </p>
+
+                    <div class="action-buttons">
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                            <input type="text" value="1" class="qty-input" id="qty-input" readonly>
+                            <button class="qty-btn" onclick="updateQty(1)">+</button>
+                        </div>
+                        <button class="btn-add-cart-large" id="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn-wishlist-large" id="wishlist-btn-large">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <div class="trust-badges"
+                        style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="trust-badge">
+                            <i class="fas fa-truck" style="color: var(--primary-600);"></i>
+                            <span>Nationwide Delivery</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt" style="color: var(--primary-600);"></i>
+                            <span>Quality Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="product-tabs">
+                <div class="tab-headers">
+                    <button class="tab-btn active" onclick="switchTab('description')">Description</button>
+                    <button class="tab-btn" onclick="switchTab('specifications')">Specifications</button>
+                    <button class="tab-btn" onclick="switchTab('reviews')">Reviews (0)</button>
+                </div>
+                <div id="tab-description" class="tab-content active">
+                    <p id="full-description">Product description goes here.</p>
+                </div>
+                <div id="tab-specifications" class="tab-content">
+                    <p>No specifications available.</p>
+                </div>
+                <div id="tab-reviews" class="tab-content">
+                    <p>No reviews yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Copied from index.html) -->
+    <footer class="premium-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="brand-name">Makamithi</h3>
+                    <p>Leading agricultural inputs distributor in Kenya.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Makamithi House, Machakos</li>
+                        <li><i class="fas fa-phone"></i> +254 768 164336</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Makamithi Enterprises Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/wishlist.js"></script>
+    <script>
+        // Inline script for product details logic
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Initialize catalog to load products
+            const catalog = new ProductCatalog();
+            await catalog.loadProducts();
+
+            const product = catalog.products.find(p => p.id === productId);
+
+            if (!product) {
+                document.getElementById('product-name').textContent = 'Product Not Found';
+                return;
+            }
+
+            // Populate Data
+            document.title = `${product.name} - Makamithi Kenya`;
+            document.getElementById('breadcrumb-current').textContent = product.name;
+            document.getElementById('main-image').src = product.image;
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-brand').innerHTML = `<i class="fas fa-certificate"></i> ${product.brand}`;
+            document.getElementById('product-price').textContent = product.price.toLocaleString();
+            document.getElementById('product-unit').textContent = `/ ${product.unit}`;
+            document.getElementById('product-description').textContent = product.description;
+            document.getElementById('full-description').textContent = product.description; // Can be more detailed if available
+
+            // Stock Status
+            const stockEl = document.getElementById('stock-status');
+            if (product.inStock) {
+                stockEl.textContent = 'In Stock';
+                stockEl.classList.add('in-stock');
+            } else {
+                stockEl.textContent = 'Out of Stock';
+                stockEl.classList.add('out-of-stock');
+                document.getElementById('add-to-cart-btn').disabled = true;
+                document.getElementById('add-to-cart-btn').textContent = 'Out of Stock';
+            }
+
+            // Add to Cart
+            document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+                const qty = parseInt(document.getElementById('qty-input').value);
+                // Use existing cart functionality
+                if (window.cart) {
+                    for (let i = 0; i < qty; i++) {
+                        window.cart.addItem(product);
+                    }
+                    // Show feedback
+                    const btn = document.getElementById('add-to-cart-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Added';
+                    setTimeout(() => btn.innerHTML = originalText, 2000);
+                }
+            });
+
+            // Wishlist Button
+            const wishlistBtn = document.getElementById('wishlist-btn-large');
+            // Check if in wishlist
+            // (Assuming wishlistManager is global from wishlist.js)
+            if (window.wishlistManager && window.wishlistManager.isInWishlist(product.id)) {
+                wishlistBtn.classList.add('active');
+                wishlistBtn.innerHTML = '<i class="fas fa-heart"></i>';
+            }
+
+            wishlistBtn.addEventListener('click', () => {
+                if (window.wishlistManager) {
+                    if (window.wishlistManager.isInWishlist(product.id)) {
+                        window.wishlistManager.remove(product.id);
+                        wishlistBtn.classList.remove('active');
+                        wishlistBtn.innerHTML = '<i class="far fa-heart"></i>';
+                    } else {
+                        window.wishlistManager.add(product);
+                        wishlistBtn.classList.add('active');
+                        wishlistBtn.innerHTML = '<i class="fas fa-heart"></i>';
+                    }
+                }
+            });
+        });
+
+        function updateQty(change) {
+            const input = document.getElementById('qty-input');
+            let val = parseInt(input.value) + change;
+            if (val < 1) val = 1;
+            input.value = val;
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

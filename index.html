@@ -131,21 +131,6 @@
     </noscript>
 
     <!-- Deferred Font Awesome -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
-
-    <!-- Main Stylesheet - Deferred -->
-    <link rel="preload" href="assets/css/styles.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="assets/css/styles.css?v=2">
-    </noscript>
-
-    <!-- E-commerce Stylesheet -->
-    <link rel="stylesheet" href="assets/css/ecommerce.css?v=2">
-    <link rel="stylesheet" href="assets/css/premium-landing.css">
 
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
@@ -275,44 +260,6 @@
         "https://www.linkedin.com/company/makamithi"
       ]
     }
-    </script>
-
-</head>
-
-<body>
-    <!-- Top Navigation Bar -->
-    <div class="top-nav">
-        <a href="#" class="logo">
-            <img src="assets/logos/Makamithi Logo.png" alt="Makamithi Logo" style="height: 60px; width: auto;">
-        </a>
-        <div class="top-nav-center">
-            <a href="#home" class="top-nav-link">Home</a>
-            <a href="#categories" class="top-nav-link">Categories</a>
-            <a href="#featured" class="top-nav-link">Best Sellers</a>
-            <a href="#services" class="top-nav-link">Services</a>
-            <a href="#contact" class="top-nav-link">Contact</a>
-        </div>
-        <div class="top-nav-right">
-            <a href="tel:+254768164336" class="phone-btn">
-                <i class="fas fa-phone"></i>
-                <span>0768 164336</span>
-            </a>
-            <a href="#" id="cart-toggle" class="cart-btn">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge">0</span>
-            </a>
-            <div class="burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sidebar Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <ul class="nav-menu">
                 <li>
                     <a href="#home" class="nav-link active">
                         <i class="fas fa-home"></i>
@@ -360,49 +307,6 @@
         </div>
         <li><a href="#home"><i class="fas fa-home"></i><span class="nav-text">Home</span></a></li>
         <li><a href="#categories"><i class="fas fa-th-large"></i><span class="nav-text">Categories</span></a></li>
-        <li><a href="#featured"><i class="fas fa-star"></i><span class="nav-text">Best Sellers</span></a></li>
-        <li><a href="#services"><i class="fas fa-cogs"></i><span class="nav-text">Services</span></a></li>
-        <li><a href="#contact"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a></li>
-    </ul>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-tagline">Kenya's #1 Agricultural Online Store</div>
-                <h1>Quality Farm Inputs Delivered to Your Farm</h1>
-                <p>Order animal feeds, fertilizers, seeds, and veterinary products online. We deliver quality inputs
-                    nationwide to help you achieve the best harvest.</p>
-
-                <!-- Hero Search Bar -->
-                <div class="hero-search-container">
-                    <form id="hero-search-form" class="hero-search-form">
-                        <div class="search-input-wrapper">
-                            <i class="fas fa-search search-icon"></i>
-                            <input type="text" id="hero-search-input"
-                                placeholder="What are you looking for? (e.g., Dairy Meal, DAP Fertilizer)"
-                                aria-label="Search products">
-                        </div>
-                        <button type="submit" class="search-btn">Search</button>
-                    </form>
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="#categories" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Shop Now</a>
-                    <a href="#featured" class="btn btn-secondary"><i class="fas fa-star"></i> View Best Sellers</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/images/1.jpeg" alt="Makamithi - Fresh agricultural produce and farming supplies"
-                    loading="eager" decoding="async">
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Section (Replaces About) -->
-    <section id="categories" class="products-section" style="padding-top: 4rem; background: #fff;">
-        <div class="container">
-            <div class="section-title">
                 <h2>Shop by Category</h2>
                 <p>Find exactly what you need for your farm</p>
             </div>
@@ -722,6 +626,201 @@
                     <p>Reliable delivery across Kenya, on time.</p>
                 </div>
                 <div class="service-card">
+                    <div class="product-price">
+                        <span class="currency">KSh</span>
+                        <span class="amount">2,800</span>
+                    </div>
+                    <button class="btn-add-cart"
+                        onclick="cart.addItem({id: 'p1', name: 'Premium Dairy Meal', price: 2800, image: 'assets/images/products/feed-1.jpg'})">
+                        <i class="fas fa-cart-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="assets/images/products/fert-1.jpg" alt="DAP Fertilizer"
+                    onerror="this.src='https://placehold.co/600x400/e8f5e9/1b5e20?text=Product'">
+                <div class="stock-status in-stock">In Stock</div>
+            </div>
+            <div class="product-details">
+                <div class="product-category">Fertilizers</div>
+                <h3 class="product-name">DAP Fertilizer (50kg)</h3>
+                <div class="product-meta">
+                    <div class="product-brand"><i class="fas fa-tag"></i> Yara</div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="currency">KSh</span>
+                        <span class="amount">6,500</span>
+                    </div>
+                    <button class="btn-add-cart"
+                        onclick="cart.addItem({id: 'p2', name: 'DAP Fertilizer (50kg)', price: 6500, image: 'assets/images/products/fert-1.jpg'})">
+                        <i class="fas fa-cart-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="assets/images/products/seed-1.jpg" alt="Maize Seed 614"
+                    onerror="this.src='https://placehold.co/600x400/e8f5e9/1b5e20?text=Product'">
+                <div class="stock-status in-stock">In Stock</div>
+            </div>
+            <div class="product-details">
+                <div class="product-category">Seeds</div>
+                <h3 class="product-name">Maize Seed H614 (2kg)</h3>
+                <div class="product-meta">
+                    <div class="product-brand"><i class="fas fa-tag"></i> Kenya Seed</div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="currency">KSh</span>
+                        <span class="amount">580</span>
+                    </div>
+                    <button class="btn-add-cart"
+                        onclick="cart.addItem({id: 'p3', name: 'Maize Seed H614 (2kg)', price: 580, image: 'assets/images/products/seed-1.jpg'})">
+                        <i class="fas fa-cart-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="assets/images/products/chem-1.jpg" alt="Pest Control"
+                    onerror="this.src='https://placehold.co/600x400/e8f5e9/1b5e20?text=Product'">
+                <div class="stock-status in-stock">In Stock</div>
+            </div>
+            <div class="product-details">
+                <div class="product-category">Crop Protection</div>
+                <h3 class="product-name">Thunder Insecticide</h3>
+                <div class="product-meta">
+                    <div class="product-brand"><i class="fas fa-tag"></i> Bayer</div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="currency">KSh</span>
+                        <span class="amount">1,200</span>
+                    </div>
+                    <button class="btn-add-cart"
+                        onclick="cart.addItem({id: 'p4', name: 'Thunder Insecticide', price: 1200, image: 'assets/images/products/chem-1.jpg'})">
+                        <i class="fas fa-cart-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="products.html" class="btn btn-primary btn-large">View All Products</a>
+        </div>
+        </div> <!-- End shop-main -->
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Partners</h2>
+                <p>Trusted brands we work with</p>
+            </div>
+            <div class="partners-track">
+                <div class="partners-slide">
+                    <a href="https://www.bayer.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Bayer.png" alt="Bayer">
+                    </a>
+                    <a href="https://www.syngenta.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/syngenta.png" alt="Syngenta">
+                    </a>
+                    <a href="https://www.corteva.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Corteva.png" alt="Corteva">
+                    </a>
+                    <a href="https://www.seedcogroup.com" target="_blank" rel="noopener noreferrer"
+                        class="partner-logo">
+                        <img src="assets/partners/seedco.png" alt="SeedCo">
+                    </a>
+                    <a href="https://www.unga.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Unga-plc.png" alt="Unga PLC">
+                    </a>
+                    <a href="https://www.oshochemicals.com" target="_blank" rel="noopener noreferrer"
+                        class="partner-logo">
+                        <img src="assets/partners/Osha.png" alt="Osha">
+                    </a>
+                    <a href="https://www.bayer.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Bayer.png" alt="Bayer">
+                    </a>
+                    <a href="https://www.syngenta.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/syngenta.png" alt="Syngenta">
+                    </a>
+                </div>
+                <div class="partners-slide" aria-hidden="true">
+                    <a href="https://www.bayer.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Bayer.png" alt="Bayer">
+                    </a>
+                    <a href="https://www.syngenta.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/syngenta.png" alt="Syngenta">
+                    </a>
+                    <a href="https://www.corteva.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Corteva.png" alt="Corteva">
+                    </a>
+                    <a href="https://www.seedcogroup.com" target="_blank" rel="noopener noreferrer"
+                        class="partner-logo">
+                        <img src="assets/partners/seedco.png" alt="SeedCo">
+                    </a>
+                    <a href="https://www.unga.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Unga-plc.png" alt="Unga PLC">
+                    </a>
+                    <a href="https://www.oshochemicals.com" target="_blank" rel="noopener noreferrer"
+                        class="partner-logo">
+                        <img src="assets/partners/Osha.png" alt="Osha">
+                    </a>
+                    <a href="https://www.bayer.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/Bayer.png" alt="Bayer">
+                    </a>
+                    <a href="https://www.syngenta.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <img src="assets/partners/syngenta.png" alt="Syngenta">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Expert support for your agricultural journey</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Expert Consultation</h3>
+                    <p>Professional farming advice and livestock care guidance.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Soil Testing</h3>
+                    <p>Comprehensive soil analysis for better crop decisions.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Training Programs</h3>
+                    <p>Workshops on modern and sustainable farming.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Delivery Services</h3>
+                    <p>Reliable delivery across Kenya, on time.</p>
+                </div>
+                <div class="service-card">
                     <i class="fas fa-handshake"></i>
                     <h3>Farm Visits</h3>
                     <p>On-site consultations for your farm challenges.</p>
@@ -735,158 +834,103 @@
         </div>
     </section>
 
-    <!-- Our Team Section -->
-    <section class="team">
+    <!-- Our Network Section -->
+    <section id="network" class="network-section">
         <div class="container">
             <div class="section-title">
-                <h2>Meet Our Team</h2>
-                <p>Dedicated professionals committed to your agricultural success</p>
+                <h2>Our Network</h2>
+                <p>Visit any of our branches across the country</p>
             </div>
 
-            <div class="team-hero">
-                <div class="team-hero-content">
-                    <div class="team-badge">
-                        <i class="fas fa-award"></i>
-                        <span>25+ Years Experience</span>
+            <div class="network-grid">
+                <!-- Machakos Main -->
+                <div class="network-card">
+                    <div class="network-icon">
+                        <i class="fas fa-store"></i>
                     </div>
-                    <h3>Expertise You Can Trust</h3>
-                    <p class="team-lead">Our team comprises experienced agricultural professionals, qualified
-                        agronomists, and veterinary specialists who are passionate about supporting farmers across
-                        Kenya.</p>
-                    <p>We bring deep knowledge of local farming conditions, crop management, and animal care. Every
-                        team
-                        member is dedicated to providing personalized advice and solutions tailored to your specific
-                        farming needs.</p>
-                </div>
-                <div class="team-hero-image">
-                    <div class="team-image-wrapper">
-                        <img src="assets/images/Makamithi-Background-3.png"
-                            alt="Makamithi team of agricultural experts and professionals" loading="lazy"
-                            decoding="async">
-                        <div class="team-overlay">
-                            <div class="team-stat">
-                                <i class="fas fa-users"></i>
-                                <strong>100+</strong>
-                                <span>Team Members</span>
-                            </div>
-                            <div class="team-stat">
-                                <i class="fas fa-store"></i>
-                                <strong>6</strong>
-                                <span>Branches</span>
-                            </div>
-                        </div>
+                    <div class="network-content">
+                        <h3>Machakos Main</h3>
+                        <p class="location">Mbitini House, Mbolu Malu Road</p>
+                        <a href="tel:0707069409" class="phone">0707 069409</a>
+                        <a href="https://maps.app.goo.gl/Dg3JyD81FmWUvFGr9" target="_blank" class="direction-link">
+                            Get Directions <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="team-features-grid">
-                <div class="team-feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-graduate"></i>
+                <!-- Machakos Annex -->
+                <div class="network-card">
+                    <div class="network-icon">
+                        <i class="fas fa-store-alt"></i>
                     </div>
-                    <h4>Qualified Experts</h4>
-                    <p>Certified agronomists and veterinary specialists at every branch</p>
-                </div>
-                <div class="team-feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
+                    <div class="network-content">
+                        <h3>Machakos Annex</h3>
+                        <p class="location">Kiwanjani next to Bata</p>
+                        <a href="tel:0741040713" class="phone">0741 040713</a>
+                        <a href="https://maps.app.goo.gl/X5z6NaRqknLgRFpZ6" target="_blank" class="direction-link">
+                            Get Directions <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <h4>Customer-Focused</h4>
-                    <p>Personalized consultation and ongoing support for your farming journey</p>
                 </div>
-                <div class="team-feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h4>Local Knowledge</h4>
-                    <p>Deep understanding of regional farming practices and conditions</p>
-                </div>
-                <div class="team-feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h4>Sustainable Practices</h4>
-                    <p>Committed to environmentally friendly and sustainable agriculture</p>
-                </div>
-            </div>
 
-            <div class="team-cta">
-                <p>Ready to work with our expert team?</p>
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-map-marker-alt"></i> Visit Our Branches
-                </a>
-            </div>
-        </div>
-    </section>
+                <!-- Bus Park -->
+                <div class="network-card">
+                    <div class="network-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <div class="network-content">
+                        <h3>Bus Park</h3>
+                        <p class="location">Machakos Bus Station</p>
+                        <a href="tel:0707069393" class="phone">0707 069393</a>
+                        <a href="https://maps.app.goo.gl/eJT8oqyKbw97aBMA8" target="_blank" class="direction-link">
+                            Get Directions <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get in Touch</h2>
-                <p>We're here to help you succeed</p>
-            </div>
-            <!-- Locations Grid -->
-            <div class="locations-grid">
-                <div class="location-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Main Shop</h3>
-                    <p>Mbitini House, Mbolu Malu Road<br>Machakos</p>
-                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">0707 069409</p>
-                    <a href="https://maps.app.goo.gl/Dg3JyD81FmWUvFGr9" target="_blank" class="direction-btn">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
+                <!-- Emali -->
+                <div class="network-card">
+                    <div class="network-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="network-content">
+                        <h3>Emali Branch</h3>
+                        <p class="location">Makueni County</p>
+                        <a href="tel:0707069393" class="phone">0707 069393</a>
+                        <a href="https://maps.app.goo.gl/D6Dp92fLnGh4CmNZ9" target="_blank" class="direction-link">
+                            Get Directions <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="location-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Annex Shop</h3>
-                    <p>Kiwanjani next to Bata<br>Machakos</p>
-                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">0741 040713</p>
-                    <a href="https://maps.app.goo.gl/X5z6NaRqknLgRFpZ6" target="_blank" class="direction-btn">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
+
+                <!-- Wote -->
+                <div class="network-card">
+                    <div class="network-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="network-content">
+                        <h3>Wote Branch</h3>
+                        <p class="location">Opposite Co-operative Bank</p>
+                        <a href="tel:0113757133" class="phone">0113 757133</a>
+                        <a href="https://maps.app.goo.gl/JKxHpGTkT6u6ckXv8" target="_blank" class="direction-link">
+                            Get Directions <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="location-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Bus Park</h3>
-                    <p>Machakos</p>
-                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">0707 069393</p>
-                    <a href="https://maps.app.goo.gl/eJT8oqyKbw97aBMA8" target="_blank" class="direction-btn">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
-                </div>
-                <div class="location-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Emali</h3>
-                    <p>Makueni County</p>
-                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">0707 069393</p>
-                    <a href="https://maps.app.goo.gl/D6Dp92fLnGh4CmNZ9" target="_blank" class="direction-btn">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
-                </div>
-                <div class="location-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Wote</h3>
-                    <p>Opposite Co-operative Bank</p>
-                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">0113 757133</p>
-                    <a href="https://maps.app.goo.gl/JKxHpGTkT6u6ckXv8" target="_blank" class="direction-btn">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
-                </div>
-                <div class="location-card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Kitui</h3>
-                    <p>Biashara Street (MainBusStop)</p>
-                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">0758 256037</p>
-                    <a href="https://maps.app.goo.gl/86YzrfUTqwsKWjZT8" target="_blank" class="direction-btn">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
+
+                <!-- Kitui -->
+                <div class="network-card">
+                    <div class="network-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <div class="network-content">
+                        <h3>Kitui Branch</h3>
+                        <p class="location">Biashara Street (Main Stage)</p>
+                        <a href="tel:0758256037" class="phone">0758 256037</a>
+                        <a href="https://maps.app.goo.gl/86YzrfUTqwsKWjZT8" target="_blank" class="direction-link">
+                            Get Directions <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -899,53 +943,40 @@
     </a>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div>
-                <p style="margin-bottom: 1.5rem; max-width: 800px; font-size: 1.3rem;">At <span class="brand-name"
-                        style="font-size: 1.5rem;">Makamithi</span> We Care...</p>
-            </div>
+    <footer class="premium-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="brand-name">Makamithi</h3>
+                    <p>Leading agricultural inputs distributor in Kenya. Quality feeds, fertilizers, and seeds.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
 
-            <div class="footer-contact-grid">
-                <div class="footer-contact-item">
-                    <i class="fas fa-building"></i>
-                    <div>
-                        <strong>Head Office</strong>
-                        <p>Makamithi House, Industrial Area (Next to KIE)<br>
-                            P.O. BOX 1817 – 90100, Machakos, Kenya</p>
-                    </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Makamithi House, Machakos</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+254768164336">+254 768 164336</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@makamithi.com">info@makamithi.com</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>Phone</strong>
-                        <p><a href="tel:+254768164336">+254 768 164336</a><br>
-                            <a href="tel:+254724236529">+254 724 236529</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong>
-                        <p><a href="mailto:info@makamithi.com">info@makamithi.com</a></p>
-                    </div>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <strong>Business Hours</strong>
-                        <p>Mon-Fri: 8:00 AM - 6:00 PM<br>
-                            Sat: 9:00 AM - 4:00 PM</p>
-                    </div>
+
+                <div class="footer-hours">
+                    <h4>Opening Hours</h4>
+                    <ul>
+                        <li><span>Mon - Fri:</span> 8:00 AM - 6:00 PM</li>
+                        <li><span>Saturday:</span> 9:00 AM - 4:00 PM</li>
+                        <li><span>Sunday:</span> Closed</li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Makamithi Enterprises Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -955,22 +986,6 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
                     .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.log('Service Worker registration failed'));
-            });
-        }
-    </script>
-
-    <!-- Main JavaScript - Deferred -->
-    <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/cart.js"></script>
-
-    <!-- Mini Cart Dropdown -->
-    <div id="mini-cart" class="mini-cart">
-        <div class="mini-cart-header">
-            <h3>Shopping Cart</h3>
-            <span class="cart-item-count"><span class="cart-badge">0</span> items</span>
-            <button class="close-cart"><i class="fas fa-times"></i></button>
-        </div>
         <div class="mini-cart-items">
             <!-- Cart items will be populated here -->
             <div class="empty-cart-message">
@@ -986,6 +1001,6 @@
             <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
         </div>
     </div>
-</body>
+    </body>
 
 </html>

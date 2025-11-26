@@ -160,7 +160,7 @@ class ProductCatalog {
 
         return `
             <div class="product-card" data-product-id="${product.id}">
-                <div class="product-image">
+                <div class="product-image" onclick="productCatalog.showProductDetails('${product.id}')" style="cursor: pointer;">
                     <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='assets/logos/Makamithi Logo.png'">
                     ${!product.inStock ? '<div class="out-of-stock-overlay">Out of Stock</div>' : ''}
                 </div>
