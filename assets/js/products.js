@@ -121,7 +121,7 @@ class ProductCatalog {
         return `
             <div class="product-card" data-product-id="${product.id}">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22400%22/%3E%3Ctext fill=%22%23999%22 font-family=%22Arial%22 font-size=%2220%22 text-anchor=%22middle%22 x=%22200%22 y=%22200%22%3ENo Image%3C/text%3E%3C/svg%3E'">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='assets/logos/Makamithi Logo.png'">
                     ${!product.inStock ? '<div class="out-of-stock-overlay">Out of Stock</div>' : ''}
                 </div>
                 <div class="product-details">
