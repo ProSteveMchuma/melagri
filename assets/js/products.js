@@ -20,18 +20,55 @@ class ProductCatalog {
         this.attachEventListeners();
     }
 
-    // Load products from JSON
+    // Load products from API
     async loadProducts() {
         try {
-            const response = await fetch('data/products.json');
-            const data = await response.json();
-            this.products = data.products;
-            this.categories = data.categories;
-            this.filteredProducts = this.products;
+            const response = await api.getProducts();
+            if (response.success) {
+                // Transform API data to match frontend format
+                this.products = response.data.map(product => ({
+                    id: product.id,
+                    name: product.name,
+                    category: product.category,
+                    price: product.price,
+                    description: product.description,
+                    brand: product.brand,
+                    image: product.image,
+                    unit: product.unit,
+                    stock: product.stock,
+                    inStock: product.stock > 0,
+                    features: product.features || [],
+                    sku: product.id,
+                    weight: `${product.unit}`,
+                    volume: null
+                }));
+                
+                // Extract unique categories
+                const uniqueCategories = [...new Set(this.products.map(p => p.category))];
+                this.categories = uniqueCategories.map(cat => ({
+                    id: cat,
+                    name: cat,
+                    icon: this.getCategoryIcon(cat)
+                }));
+                
+                this.filteredProducts = this.products;
+            }
         } catch (error) {
             console.error('Error loading products:', error);
             this.showError('Failed to load products. Please refresh the page.');
         }
+    }
+
+    // Get category icon
+    getCategoryIcon(category) {
+        const icons = {
+            'Animal Feeds': 'fas fa-paw',
+            'Fertilizers': 'fas fa-seedling',
+            'Seeds': 'fas fa-leaf',
+            'Crop Protection': 'fas fa-shield-alt',
+            'Veterinary': 'fas fa-syringe'
+        };
+        return icons[category] || 'fas fa-box';
     }
 
     // Render category filters

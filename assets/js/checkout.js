@@ -78,26 +78,38 @@ class Checkout {
 
     async processOrder(form) {
         const formData = new FormData(form);
+        const subtotal = cart.getTotal();
+        const total = subtotal + this.deliveryFee;
+        
         const orderData = {
             customer: {
-                fullName: formData.get('fullName'),
+                name: formData.get('fullName'),
                 phone: formData.get('phone'),
                 email: formData.get('email')
             },
             delivery: {
-                county: formData.get('county'),
+                address: formData.get('address'),
                 city: formData.get('city'),
-                area: formData.get('area'),
-                address: formData.get('address')
+                region: `${formData.get('county')}, ${formData.get('area')}`,
+                instructions: formData.get('notes')
             },
-            items: cart.cart,
-            subtotal: cart.getTotal(),
-            deliveryFee: this.deliveryFee,
-            total: cart.getTotal() + this.deliveryFee,
-            paymentMethod: formData.get('paymentMethod'),
-            notes: formData.get('notes'),
-            orderDate: new Date().toISOString(),
-            orderNumber: this.generateOrderNumber()
+            items: cart.cart.map(item => ({
+                productId: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity,
+                subtotal: item.price * item.quantity
+            })),
+            payment: {
+                method: formData.get('paymentMethod'),
+                mpesaPhone: formData.get('paymentMethod') === 'mpesa' ? formData.get('phone') : null
+            },
+            pricing: {
+                subtotal: subtotal,
+                deliveryFee: this.deliveryFee,
+                total: total
+            },
+            notes: formData.get('notes')
         };
 
         // Disable submit button
@@ -108,19 +120,26 @@ class Checkout {
         }
 
         try {
-            // Save order to localStorage (in production, send to backend)
-            this.saveOrder(orderData);
+            // Create order via API
+            const response = await api.createOrder(orderData);
+            
+            if (!response.success) {
+                throw new Error(response.message || 'Failed to create order');
+            }
+
+            const order = response.data;
 
             // Process payment based on method
-            if (orderData.paymentMethod === 'mpesa') {
-                await this.processMpesaPayment(orderData);
+            if (orderData.payment.method === 'mpesa') {
+                await this.processMpesaPayment(order);
             } else {
-                // Cash on Delivery - go directly to success
-                this.redirectToSuccess(orderData);
+                // Cash on Delivery - confirm and redirect
+                await api.confirmCODOrder(order.orderNumber);
+                this.redirectToSuccess(order);
             }
         } catch (error) {
             console.error('Order processing error:', error);
-            alert('There was an error processing your order. Please try again or contact us for assistance.');
+            alert(error.message || 'There was an error processing your order. Please try again.');
             
             if (submitBtn) {
                 submitBtn.disabled = false;
@@ -129,40 +148,58 @@ class Checkout {
         }
     }
 
-    async processMpesaPayment(orderData) {
-        // In production, this would call your M-Pesa API
-        // For now, we'll simulate the payment process
-        
-        const phoneNumber = orderData.customer.phone.replace(/^0/, '254');
-        const amount = orderData.total;
+    async processMpesaPayment(order) {
+        try {
+            const phoneNumber = order.customer.phone.replace(/^0/, '254');
+            const amount = order.pricing.total;
 
-        // Show M-Pesa prompt
-        const proceed = confirm(
-            `M-Pesa Payment\n\n` +
-            `Amount: KSh ${amount.toLocaleString()}\n` +
-            `Phone: ${orderData.customer.phone}\n\n` +
-            `You will receive an M-Pesa prompt on your phone.\n` +
-            `Enter your M-Pesa PIN to complete the payment.\n\n` +
-            `Click OK to proceed.`
-        );
+            // Show M-Pesa prompt
+            const proceed = confirm(
+                `M-Pesa Payment\n\n` +
+                `Amount: KSh ${amount.toLocaleString()}\n` +
+                `Phone: ${order.customer.phone}\n` +
+                `Order: ${order.orderNumber}\n\n` +
+                `You will receive an M-Pesa prompt on your phone.\n` +
+                `Enter your M-Pesa PIN to complete the payment.\n\n` +
+                `Click OK to proceed.`
+            );
 
-        if (!proceed) {
-            throw new Error('Payment cancelled by user');
+            if (!proceed) {
+                throw new Error('Payment cancelled by user');
+            }
+
+            // Initiate M-Pesa payment via API
+            const paymentResponse = await api.initiateMpesaPayment({
+                orderNumber: order.orderNumber,
+                phone: phoneNumber,
+                amount: amount
+            });
+
+            if (!paymentResponse.success) {
+                throw new Error(paymentResponse.message || 'Failed to initiate M-Pesa payment');
+            }
+
+            // Show waiting message
+            alert(
+                `M-Pesa STK Push Sent!\n\n` +
+                `Check your phone and enter your M-Pesa PIN.\n` +
+                `Please wait while we confirm your payment...`
+            );
+
+            // Wait for payment confirmation (simulate)
+            await new Promise(resolve => setTimeout(resolve, 5000));
+
+            // In production, you would poll the payment status or use webhooks
+            // For now, redirect to success page
+            this.redirectToSuccess(order);
+        } catch (error) {
+            throw error;
         }
-
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
-        // In production, check payment status from backend
-        // For demo, we'll assume success
-        this.redirectToSuccess(orderData);
     }
 
     saveOrder(orderData) {
-        // Save to localStorage (in production, send to backend API)
-        const orders = JSON.parse(localStorage.getItem('makamithi_orders') || '[]');
-        orders.push(orderData);
-        localStorage.setItem('makamithi_orders', JSON.stringify(orders));
+        // No longer needed - API handles storage
+        // Kept for backward compatibility if needed
     }
 
     generateOrderNumber() {
