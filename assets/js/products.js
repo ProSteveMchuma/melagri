@@ -14,9 +14,49 @@ class ProductCatalog {
     }
 
     async init() {
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        const searchParam = urlParams.get('search');
+
+        if (categoryParam) {
+            this.currentCategory = categoryParam;
+        }
+
+        if (searchParam) {
+            this.searchQuery = searchParam;
+            // Set search input value if it exists
+            const searchInput = document.getElementById('product-search');
+            if (searchInput) {
+                searchInput.value = this.searchQuery;
+            }
+        }
+
         await this.loadProducts();
         this.renderCategories();
-        this.renderProducts();
+
+        // Apply initial filters
+        if (this.currentCategory !== 'all' || this.searchQuery) {
+            this.filterProducts();
+
+            // Update active category button if category param exists
+            if (this.currentCategory !== 'all') {
+                // We need to do this after renderCategories
+                setTimeout(() => {
+                    const btns = document.querySelectorAll('.category-filter-btn');
+                    btns.forEach(btn => {
+                        if (btn.dataset.category === this.currentCategory) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                }, 0);
+            }
+        } else {
+            this.renderProducts();
+        }
+
         this.attachEventListeners();
     }
 
@@ -42,7 +82,7 @@ class ProductCatalog {
                     weight: `${product.unit}`,
                     volume: null
                 }));
-                
+
                 // Extract unique categories
                 const uniqueCategories = [...new Set(this.products.map(p => p.category))];
                 this.categories = uniqueCategories.map(cat => ({
@@ -50,7 +90,7 @@ class ProductCatalog {
                     name: cat,
                     icon: this.getCategoryIcon(cat)
                 }));
-                
+
                 this.filteredProducts = this.products;
             }
         } catch (error) {
@@ -114,7 +154,7 @@ class ProductCatalog {
 
     // Create product card HTML
     createProductCard(product) {
-        const stockStatus = product.inStock ? 
+        const stockStatus = product.inStock ?
             '<span class="stock-status in-stock"><i class="fas fa-check-circle"></i> In Stock</span>' :
             '<span class="stock-status out-of-stock"><i class="fas fa-times-circle"></i> Out of Stock</span>';
 
@@ -177,7 +217,7 @@ class ProductCatalog {
         // Filter by search query
         if (this.searchQuery) {
             const query = this.searchQuery.toLowerCase();
-            filtered = filtered.filter(product => 
+            filtered = filtered.filter(product =>
                 product.name.toLowerCase().includes(query) ||
                 product.description.toLowerCase().includes(query) ||
                 product.brand.toLowerCase().includes(query)
@@ -311,11 +351,11 @@ class ProductCatalog {
             if (e.target.closest('.category-filter-btn')) {
                 const btn = e.target.closest('.category-filter-btn');
                 const category = btn.dataset.category;
-                
+
                 // Update active state
                 document.querySelectorAll('.category-filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
+
                 // Filter products
                 this.currentCategory = category;
                 this.filterProducts();
