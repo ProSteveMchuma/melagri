@@ -1,7 +1,10 @@
 // API Service for Melagri E-commerce
 class APIService {
   constructor() {
-    this.baseURL = 'http://localhost:5000/api';
+    // Use localhost for local development, relative path for production (Vercel)
+    this.baseURL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:5000/api'
+      : '/api';
     this.token = localStorage.getItem('authToken');
   }
 
@@ -131,12 +134,12 @@ class APIService {
       method: 'POST',
       body: JSON.stringify(userData)
     });
-    
+
     if (response.success && response.data.token) {
       this.setToken(response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
     }
-    
+
     return response;
   }
 
@@ -145,12 +148,12 @@ class APIService {
       method: 'POST',
       body: JSON.stringify(credentials)
     });
-    
+
     if (response.success && response.data.token) {
       this.setToken(response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
     }
-    
+
     return response;
   }
 

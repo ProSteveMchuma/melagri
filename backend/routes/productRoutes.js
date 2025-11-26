@@ -8,7 +8,7 @@ const {
   updateProduct,
   deleteProduct,
   updateStock
-} = require('../controllers/productController');
+} = require('../controllers/productControllerFirebase');
 
 // Public routes
 router.get('/', getProducts);

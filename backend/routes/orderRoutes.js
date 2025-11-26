@@ -7,7 +7,7 @@ const {
   getOrder,
   updateOrderStatus,
   cancelOrder
-} = require('../controllers/orderController');
+} = require('../controllers/orderControllerFirebase');
 
 // Public route (guest checkout)
 router.post('/', createOrder);

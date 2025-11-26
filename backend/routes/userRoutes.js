@@ -8,8 +8,8 @@ const {
   updateProfile,
   updatePassword,
   getUsers,
-  deleteUser
-} = require('../controllers/userController');
+  deactivateUser
+} = require('../controllers/userControllerFirebase');
 
 // Public routes
 router.post('/register', register);
@@ -22,6 +22,6 @@ router.put('/password', protect, updatePassword);
 
 // Admin routes
 router.get('/', protect, authorize('admin'), getUsers);
-router.delete('/:id', protect, authorize('admin'), deleteUser);
+router.delete('/:id', protect, authorize('admin'), deactivateUser);
 
 module.exports = router;
