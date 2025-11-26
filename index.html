@@ -365,11 +365,37 @@
     </ul>
 
     <!-- Hero Section -->
-    <div class="hero-image">
-        <img src="assets/images/1.jpeg" alt="Makamithi - Fresh agricultural produce and farming supplies"
-            loading="eager" decoding="async">
-    </div>
-    </div>
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-tagline">Kenya's #1 Agricultural Online Store</div>
+                <h1>Quality Farm Inputs Delivered to Your Farm</h1>
+                <p>Order animal feeds, fertilizers, seeds, and veterinary products online. We deliver quality inputs
+                    nationwide to help you achieve the best harvest.</p>
+
+                <!-- Hero Search Bar -->
+                <div class="hero-search-container">
+                    <form id="hero-search-form" class="hero-search-form">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="hero-search-input"
+                                placeholder="What are you looking for? (e.g., Dairy Meal, DAP Fertilizer)"
+                                aria-label="Search products">
+                        </div>
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#categories" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Shop Now</a>
+                    <a href="#featured" class="btn btn-secondary"><i class="fas fa-star"></i> View Best Sellers</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/1.jpeg" alt="Makamithi - Fresh agricultural produce and farming supplies"
+                    loading="eager" decoding="async">
+            </div>
+        </div>
     </section>
 
     <!-- Categories Section (Replaces About) -->
@@ -692,7 +718,8 @@
                     <p class="team-lead">Our team comprises experienced agricultural professionals, qualified
                         agronomists, and veterinary specialists who are passionate about supporting farmers across
                         Kenya.</p>
-                    <p>We bring deep knowledge of local farming conditions, crop management, and animal care. Every team
+                    <p>We bring deep knowledge of local farming conditions, crop management, and animal care. Every
+                        team
                         member is dedicated to providing personalized advice and solutions tailored to your specific
                         farming needs.</p>
                 </div>
@@ -886,12 +913,8 @@
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 <span class="brand-name">Makamithi</span>. All rights reserved.</p>
-        </div>
     </footer>
 
-    <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
