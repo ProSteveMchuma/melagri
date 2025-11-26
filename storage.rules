@@ -1,0 +1,36 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Product Images
+    // - Read: Public access
+    // - Write: Authenticated admins only
+    match /products/{imageId} {
+      allow read: if true;
+      allow write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // User Uploads (receipts, documents)
+    // - Read: Owner or admin
+    // - Write: Owner only
+    match /uploads/{userId}/{allPaths=**} {
+      allow read: if request.auth != null && 
+        (request.auth.uid == userId || 
+         firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin');
+      
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Temporary uploads
+    // - Read/Write: Authenticated users (auto-delete after 24h)
+    match /temp/{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Default: Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

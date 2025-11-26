@@ -8,7 +8,9 @@
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:firebase": "node server-firebase.js",
-    "seed:firebase": "node seed-firebase.js"
+    "seed:firebase": "node seed-firebase.js",
+    "emulator": "FIRESTORE_EMULATOR_HOST=localhost:8080 node server-firebase.js",
+    "seed:emulator": "node seed-emulator.js"
   },
   "keywords": [
     "ecommerce",
